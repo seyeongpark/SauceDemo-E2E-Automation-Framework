@@ -1,0 +1,51 @@
+[
+  {
+    "user_id": "USER-001",
+    "username": "standard_user",
+    "password": "secret_sauce",
+    "expected_error": null,
+    "expected_url": "https://www.saucedemo.com/inventory.html"
+  },
+  {
+    "user_id": "USER-002",    
+    "username": "wronguser",
+    "password": "secret_sauce",
+    "expected_error": "Username and password do not match",
+    "expected_url": "https://www.saucedemo.com/"
+  },
+  {
+    "user_id": "USER-003",
+    "username": "standard_user",
+    "password": "wrongpassword",
+    "expected_error": "Username and password do not match",
+    "expected_url": "https://www.saucedemo.com/"
+  },
+  {
+    "user_id": "USER-004",
+    "username": "locked_out_user",
+    "password": "secret_sauce",
+    "expected_error": "Sorry, this user has been locked out.",
+    "expected_url": "https://www.saucedemo.com/"
+  },
+  {
+    "user_id": "USER-005",
+    "username": "",
+    "password": "",
+    "expected_error": "Username is required",
+    "expected_url": "https://www.saucedemo.com/"
+  },
+  {
+    "user_id": "USER-006",
+    "username": "standard_user",
+    "password": "",
+    "expected_error": "Password is required",
+    "expected_url": "https://www.saucedemo.com/"
+  },
+  {
+    "user_id": "USER-007",
+    "username": "",
+    "password": "secret_sauce",
+    "expected_error": "Username is required",
+    "expected_url": "https://www.saucedemo.com/"
+  }
+]
