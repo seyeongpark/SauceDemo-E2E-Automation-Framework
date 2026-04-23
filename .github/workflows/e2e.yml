@@ -1,0 +1,68 @@
+name: E2E Tests
+
+# "언제"
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+  schedule:
+    # 매일 UTC 18시 (한국시간 새벽 3시) nightly 실행
+    - cron: '0 18 * * *'
+
+jobs:
+  test:
+    timeout-minutes: 30
+    # "어떤 컴퓨터에서"
+    runs-on: ubuntu-latest
+    # "어떤 브라우저 조합으로"
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    # "환경 설치"
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Install Playwright browsers
+        run: playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run tests
+        # "환경변수 주입"
+        env:
+          BASE_URL: ${{ secrets.BASE_URL || 'https://www.saucedemo.com/' }}
+          STANDARD_USERNAME: ${{ secrets.STANDARD_USERNAME || 'standard_user' }}
+          STANDARD_PASSWORD: ${{ secrets.STANDARD_PASSWORD || 'secret_sauce' }}
+        # "pytest 실행"
+        run: | 
+           pytest --browser ${{ matrix.browser }} \
+                 --no-header \
+                 -o addopts="" \
+                 --screenshot=only-on-failure \
+                 --video=retain-on-failure \
+                 --tracing=retain-on-failure \
+                 --output=test-results \
+                 --reruns 2 \
+                 --reruns-delay 1 \
+                 -n auto     
+      # "결과물 업로드"           
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ matrix.browser }}
+          path: test-results/
+          retention-days: 14  
+
+      
