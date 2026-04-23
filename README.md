@@ -1,7 +1,7 @@
 # SauceDemo E2E Automation Framework
 
 Playwright와 pytest 기반의 E2E 자동화 프레임워크입니다.
-https://www.saucedemo.com/ 을 대상으로, 실무에서 쓰이는 구조와 기법(POM, 데이터 분리, storage_state 재사용, CI/CD, 크로스 브라우서)을 적용하였습니다.
+https://www.saucedemo.com/ 을 대상으로 POM, 데이터 분리, storage_state 재사용, CI/CD, 크로스 브라우저를 적용하였습니다.
 
 ## 프로젝트 목표
 
