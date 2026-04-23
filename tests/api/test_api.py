@@ -9,8 +9,7 @@ API_BASE = "https://reqres.in/api/"
 
 @pytest.fixture(scope="module")
 def api_request(playwright: Playwright) -> APIRequestContext:
-  api_key = os.getenv("REQRES_API_KEY")
-  assert api_key, "REQRES_API_KEY 환경변수 확인 필요"
+  api_key = os.getenv("REQRES_API_KEY", "reqres-free-v1")
 
   request_context = playwright.request.new_context(
     base_url = API_BASE,
