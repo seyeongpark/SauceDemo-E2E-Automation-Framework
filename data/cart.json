@@ -1,0 +1,45 @@
+[
+  {
+    "case_id": "CART-001",
+    "description": "고가 상품 2개 - 최소금액 통과",
+    "products": ["Sauce Labs Backpack", "Sauce Labs Fleece Jacket"],
+    "expected_total": 79.98
+  },
+  {
+    "case_id": "CART-002",
+    "description": "단일 저가 상품 - 최소금액 미달",
+    "products": ["Sauce Labs Backpack"],
+    "expected_total": 29.99
+  },
+  {
+    "case_id": "CART-003",
+    "description": "빈 장바구니",
+    "products": [],
+    "expected_total": 0.0
+  },
+  {
+    "case_id": "CART-004",
+    "description": "재킷 단일 - 경계값 통과",
+    "products": ["Sauce Labs Fleece Jacket"],
+    "expected_total": 49.99
+  },
+  {
+    "case_id": "CART-005",
+    "description": "저가 상품 조합 - 미달",
+    "products": ["Sauce Labs Bike Light", "Sauce Labs Onesie"],
+    "expected_total": 17.98
+  },
+  {
+    "case_id": "CART-006",
+    "description": "모든 상품",
+    "products": [
+      "Sauce Labs Backpack",
+      "Sauce Labs Fleece Jacket",
+      "Sauce Labs Bolt T-Shirt",
+      "Sauce Labs Bike Light",
+      "Sauce Labs Onesie",
+      "Test.allTheThings() T-Shirt (Red)"
+    ],
+    "expected_total": 129.94
+  }
+]
