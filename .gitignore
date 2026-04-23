@@ -6,3 +6,4 @@ playwright-report/
 .pytest_cache/
 node_modules/
 .auth/
+.DS_Store
