@@ -1,0 +1,8 @@
+# 의존성 정리
+pytest==8.4.2
+pytest-playwright==0.5.2
+playwright==1.58.0
+pytest-xdist==3.6.1
+pytest-rerunfailures==14.0
+pytest-dotenv==0.5.2
+
