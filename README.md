@@ -60,6 +60,12 @@ pytest --headed=false
 playwight show-trace test-results//trace.zip
 ```
 
+```bash
+# Allure 리포트 보기 (임시 서버)
+allure serve allure-results
+```
+
+
 ### 테스트 커버리지
 | 영역 | 시나리오 수 | 설명 |
 |-----|----------|-----|
@@ -67,3 +73,9 @@ playwight show-trace test-results//trace.zip
 | 장바구니 | 8 | 최소 주문금액 검증, 다양한 조합 |
 | E2E 주문 | 1+ | 로그인→장바구니→결제 풀 플로우 |
 | API | 3+ | REST API 직접 호출 검증 |
+
+### CI
+**실행 트리거**
+- Push / PR: 빠른 피드백 (smoke 중심)
+- 매일 KST 03:00 (nightly): 전체 회귀 테스트
+- 수동 실행 (workflow_dispatch): 필요 시 즉시 실행

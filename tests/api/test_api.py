@@ -2,7 +2,7 @@
 
 import os
 
-import pytest
+import pytest, allure
 from playwright.sync_api import Playwright, APIRequestContext
 
 API_BASE = "https://reqres.in/api/"
@@ -23,6 +23,9 @@ def api_request(playwright: Playwright) -> APIRequestContext:
   request_context.dispose()
 
 # 사용자 목록 조회 - 상태코드, 응답구조, 페지네이션 검증
+@allure.epic("API 테스트")
+@allure.feature("사용자 조회")
+@allure.story("사용자 목록 조회 성공 및 응답 검증")
 @pytest.mark.api
 @pytest.mark.smoke
 def test_get_users_list(api_request: APIRequestContext):
@@ -37,6 +40,9 @@ def test_get_users_list(api_request: APIRequestContext):
   assert all("email" in user for user in body["data"])
 
 # POST /users 에 사용자 생성
+@allure.epic("API 테스트")
+@allure.feature("사용자 생성")
+@allure.story("정상 사용자 생성 성공")
 @pytest.mark.api
 def test_create_user(api_request: APIRequestContext):
   payload = { "name": "John Doe", "job": "QA Engineer" }
@@ -51,6 +57,9 @@ def test_create_user(api_request: APIRequestContext):
   assert "createdAt" in body
 
 # 존재하지 않는 사용자 조회 시 --> 404
+@allure.epic("API 테스트")
+@allure.feature("사용자 조회")
+@allure.story("존재하지 않는 사용자 조회시 404 반환")
 @pytest.mark.api
 def test_user_not_found(api_request: APIRequestContext):
   response = api_request.get("users/44")

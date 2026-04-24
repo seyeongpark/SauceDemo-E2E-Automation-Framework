@@ -1,6 +1,6 @@
 # tests/test_login.py
 
-import pytest, json
+import pytest, json, allure
 from pages.login_page import LoginPage
 from playwright.sync_api import expect
 from pathlib import Path
@@ -21,6 +21,9 @@ LOGIN_CASES = [
     for case in login_cases
 ]
 
+@allure.epic("쇼핑몰")
+@allure.feature("로그인")
+@allure.story("로그인 기능 검증")
 @pytest.mark.parametrize("user_id, username, password, expected_msg, expected_url", LOGIN_CASES)
 def test_login(page, base_url, user_id, username, password, expected_msg, expected_url):
   login_page = LoginPage(page)

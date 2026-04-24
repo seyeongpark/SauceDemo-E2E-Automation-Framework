@@ -1,6 +1,6 @@
 # tests/test_cart.py
 
-import pytest, json
+import pytest, json, allure
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
@@ -13,6 +13,9 @@ with open(DATA_FILE, encoding="utf-8") as f:
   CART_CASES = json.load(f)
 
 # 장바구니 총액이 기대값과 정확히 일치하는지 검증
+@allure.epic("쇼핑몰")
+@allure.feature("주문/결제")
+@allure.feature("장바구니 총액 계선 정확성 검증")
 @pytest.mark.regression
 @pytest.mark.parametrize(
   "case", 
@@ -36,6 +39,10 @@ def test_cart_total_calculation(logged_in_page, case):
   )
 
 # 최소 주문금액 기준을 충족하는지 검증
+
+@allure.epic("쇼핑몰")
+@allure.feature("주문/결제")
+@allure.feature("최소 주문금액 검증")
 @pytest.mark.regression
 @pytest.mark.parametrize(
   "case", 

@@ -1,6 +1,6 @@
 # tests/test_complete_order.py
 
-import pytest
+import pytest, allure
 from pages.login_page import LoginPage
 from pages.inventory_page import InventoryPage
 from pages.cart_page import CartPage
@@ -15,6 +15,9 @@ E2E_CASES = [
 ]
 
 # --- 메인 테스트 시나리오 ---
+@allure.epic("쇼핑몰")
+@allure.feature("주문/결제")
+@allure.story("정상 주문 완료")
 @pytest.mark.e2e
 @pytest.mark.smoke
 @pytest.mark.parametrize("products, firstname, lastname, zipcode", E2E_CASES)
