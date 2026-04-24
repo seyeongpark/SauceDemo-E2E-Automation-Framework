@@ -7,5 +7,5 @@ playwright-report/
 node_modules/
 .auth/
 .DS_Store
-reports/
+reports/allure-results/
 allure-report/
